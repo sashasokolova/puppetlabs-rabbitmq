@@ -88,7 +88,7 @@ class rabbitmq::config {
     mode   => '0644',
   }
 
-  file { '${etc_dir}/rabbitmq/ssl':
+  file { "${etc_dir}/rabbitmq/ssl":
     ensure => directory,
     owner  => '0',
     group  => '0',
