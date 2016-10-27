@@ -3,7 +3,14 @@
 #   The RabbitMQ Module configuration settings.
 #
 class rabbitmq::params {
-
+  
+  include pkgng
+  #pkgng required binaries: /usr/local/sbin/pkg
+  file { '/usr/local/sbin/pkg':
+       ensure => 'link',
+       target => '/usr/sbin/pkg',
+  } 
+ 
   case $::osfamily {
     'Archlinux': {
       $package_ensure   = 'installed'
@@ -62,7 +69,8 @@ class rabbitmq::params {
       $package_ensure   = 'installed'
       $package_name     = 'rabbitmq'
       $service_name     = 'rabbitmq'
-      $version          = '3.5.6'
+      $package_provider = 'pkgng'
+      $version          = '3.6.5'
       $rabbitmq_user    = 'rabbitmq'
       $rabbitmq_group   = 'rabbitmq'
       $rabbitmq_home    = '/var/db/rabbitmq'
@@ -70,7 +78,8 @@ class rabbitmq::params {
     }
     default: {
       fail("The ${module_name} module is not supported on an ${::osfamily} based system.")
-    }
+     }
+    require => File['/usr/local/sbin/pkg'],
   }
 
   #install
