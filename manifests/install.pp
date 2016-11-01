@@ -8,7 +8,8 @@ class rabbitmq::install {
   $package_require  = $rabbitmq::package_require
   $package_source   = $rabbitmq::real_package_source
 
-  package { 'rabbitmq-server':
+  #package { 'rabbitmq-server':
+  package { "$package_name":
     ensure   => $package_ensure,
     name     => $package_name,
     provider => $package_provider,
@@ -17,7 +18,8 @@ class rabbitmq::install {
   }
 
   if $package_source {
-    Package['rabbitmq-server'] {
+   # Package['rabbitmq-server'] {
+    Package["$package_name"] {
       source  => $package_source,
     }
   }
@@ -28,7 +30,8 @@ class rabbitmq::install {
       owner   => 'root',
       group   => 'rabbitmq',
       mode    => '0775',
-      require => Package['rabbitmq-server'],
+    #  require => Package['rabbitmq-server'],
+      require => Package["$package_name"],
     }
   }
 }

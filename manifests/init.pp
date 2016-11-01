@@ -235,6 +235,10 @@ class rabbitmq(
         }
         $package_require = Class['apt::update']
       }
+      'FreeBSD': {
+          include pkgng
+          $package_require = Pkgng::Repo['pkg.freebsd.org']
+      }
       default: {
         $package_require = undef
       }

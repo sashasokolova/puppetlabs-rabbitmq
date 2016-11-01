@@ -4,13 +4,6 @@
 #
 class rabbitmq::params {
   
-  include pkgng
-  #pkgng required binaries: /usr/local/sbin/pkg
-  file { '/usr/local/sbin/pkg':
-       ensure => 'link',
-       target => '/usr/sbin/pkg',
-  } 
- 
   case $::osfamily {
     'Archlinux': {
       $package_ensure   = 'installed'
@@ -79,7 +72,6 @@ class rabbitmq::params {
     default: {
       fail("The ${module_name} module is not supported on an ${::osfamily} based system.")
      }
-    require => File['/usr/local/sbin/pkg'],
   }
 
   #install
