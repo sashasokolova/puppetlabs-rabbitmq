@@ -332,7 +332,7 @@ Boolean, set to true to log LDAP auth.
 ####`manage_repos`
 
 Boolean, whether or not to manage package repositories.
-DEPRECATED. Please use repos_ensure instead
+
 
 ####`management_hostname`
 
