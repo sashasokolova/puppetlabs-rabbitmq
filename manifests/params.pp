@@ -89,6 +89,7 @@ class rabbitmq::params {
       $env_config_path        = '/etc/rabbitmq/rabbitmq-env.conf'
     }
   }
+  $management_hostname        =
   $management_port            = '15672'
   $management_ssl             = true
   $package_apt_pin            = ''
@@ -141,4 +142,8 @@ class rabbitmq::params {
   $config_variables           = {}
   $config_kernel_variables    = {}
   $file_limit                 = '16384'
+  $config_shovel              = false
+  $config_shovel_statics      = {}
+  $config_management_variables = {}
+  $config_additional_variables = {}
 }
