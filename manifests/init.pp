@@ -238,6 +238,14 @@ class rabbitmq(
       'FreeBSD': {
           include pkgng
           $package_require = Pkgng::Repo['pkg.freebsd.org']
+          # Startup script for service
+          file { '/etc/rc.conf.d/rabbitmq' :
+            owner   => root,
+            group   => wheel,
+            mode    => '0644',
+            source  =>  "puppet:///modules/rabbitmq/rc.conf.d.rundeck",
+#            before  => Class['::rabbitmq::service'],
+         }
       }
       default: {
         $package_require = undef
@@ -246,6 +254,7 @@ class rabbitmq(
   } else {
     $package_require = undef
   }
+  
 
   include '::rabbitmq::install'
   include '::rabbitmq::config'
