@@ -243,7 +243,7 @@ class rabbitmq(
             owner   => root,
             group   => wheel,
             mode    => '0644',
-            source  =>  "puppet:///modules/rabbitmq/rc.conf.d.rundeck",
+            source  =>  "puppet:///modules/rabbitmq/rc.conf.d.rabbitmq",
 #            before  => Class['::rabbitmq::service'],
          }
       }
