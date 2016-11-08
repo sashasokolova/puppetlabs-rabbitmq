@@ -89,7 +89,7 @@ class rabbitmq::params {
       $env_config_path        = '/etc/rabbitmq/rabbitmq-env.conf'
     }
   }
-  $management_hostname        = $hostname
+  $management_hostname        = $fqdn
   $management_port            = '15672'
   $management_ssl             = true
   $package_apt_pin            = ''
