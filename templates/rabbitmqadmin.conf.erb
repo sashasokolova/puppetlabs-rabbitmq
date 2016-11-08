@@ -8,3 +8,15 @@ port = <%= @management_port %>
 <% if @management_hostname %>
 hostname = <%= @management_hostname %>
 <% end -%>
+<% if @management_hostname %>
+hostname = <%= @management_hostname %>
+<% end -%>
+<% if @ssl_cacert %>
+ssl_ca_cert_file = <%= @ssl_cacert %>
+<% end -%>
+<% if @ssl_cert %>
+ssl_cert_file = <%= @ssl_cert %>
+<% end -%>
+<% if @ssl_key%>
+sssl_key_file = <%= @ssl_key %>
+<% end -%>
