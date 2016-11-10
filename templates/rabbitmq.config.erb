@@ -5,6 +5,7 @@
   {ssl, [{versions, [<%= @ssl_versions.sort.map { |v| "'#{v}'" }.join(', ') %>]}]},
 <%- end -%>
   {rabbit, [
+    {disk_free_limit, 1000000000},
 <%- if @heartbeat -%>
     {heartbeat, <%=@heartbeat%>},
 <% end -%>
@@ -18,12 +19,9 @@
     {cluster_partition_handling, <%= @cluster_partition_handling %>},
 <% end -%>
     {tcp_listen_options,
-         [binary,
-         <%- if @tcp_keepalive -%>
+         [<%- if @tcp_keepalive -%>
          {keepalive,     true},
          <%- end -%>
-         {packet,        raw},
-         {reuseaddr,     true},
          <%- if @tcp_backlog -%>
          {backlog,       <%= @tcp_backlog %>},
          <%- end -%>
